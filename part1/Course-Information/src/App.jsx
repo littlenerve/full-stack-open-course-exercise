@@ -14,6 +14,22 @@ const App = () => {
       <Button handleClick={() => setGood(good + 1)} text={"good"}></Button>
       <Button handleClick={() => setNeutral(neutral + 1)} text={"neutral"}></Button>
       <Button handleClick={() => setBad(bad + 1)} text={"bad"}></Button>
+      <Statics good={good} neutral={neutral} bad={bad} all={all} average={average} positive={positive}></Statics>
+    </div>
+  )
+}
+
+const Statics = ({ good, neutral, bad, all, average, positive }) => {
+  if (all === 0) {
+    return (
+      <div>
+        <Head text={"statics"}></Head>
+        <Head text={"no feadback"}></Head>
+      </div>
+    )
+  }
+  return (
+    <div>
       <Head text={"statics"}></Head>
       <Show desc={"good"} socre={good}></Show>
       <Show desc={"neutral"} socre={neutral}></Show>
@@ -40,9 +56,9 @@ const Button = ({ handleClick, text }) => (
 const Show = ({ desc, socre }) => {
   if (socre !== socre) {
     return (
-    <div>
-      <p>{desc}</p>
-    </div>
+      <div>
+        <p>{desc}</p>
+      </div>
     )
   } else {
     return (<div>
