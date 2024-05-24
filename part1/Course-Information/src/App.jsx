@@ -5,7 +5,9 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-
+  let all = good + neutral + bad
+  let average = (good - bad) / all;
+  let positive = (good / all) * 100;
   return (
     <div>
       <Head text={"give feed back"}></Head>
@@ -16,6 +18,9 @@ const App = () => {
       <Show desc={"good"} socre={good}></Show>
       <Show desc={"neutral"} socre={neutral}></Show>
       <Show desc={"bad"} socre={bad}></Show>
+      <Show desc={"all"} socre={all}></Show>
+      <Show desc={"average"} socre={average}></Show>
+      <Show desc={"positive"} socre={positive + "%"}></Show>
     </div>
   )
 }
@@ -26,17 +31,27 @@ const Head = ({ text }) => (
   </div>
 )
 
-const Button = ({handleClick,text}) => (
+const Button = ({ handleClick, text }) => (
   <button onClick={handleClick}>
     {text}
   </button>
 )
 
-const Show = ({ desc, socre }) => (
-  <div>
-    <p>{desc} {socre}</p>
-  </div>
-)
+const Show = ({ desc, socre }) => {
+  if (socre !== socre) {
+    return (
+    <div>
+      <p>{desc}</p>
+    </div>
+    )
+  } else {
+    return (<div>
+      <p>{desc} {socre}</p>
+    </div>
+    )
+  }
+
+}
 
 
 export default App
