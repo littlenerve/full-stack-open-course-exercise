@@ -6,6 +6,10 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
+    if(persons.some(person=>person.name===newName)){
+      window.alert(`${newName} is already added to phonebook`)
+      return
+    }
     const newPerson = {
       name: newName
     }
@@ -22,7 +26,7 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={addName}>
         <div>
-          name: <input key={newName} value={newName} onChange={handleNameChange}/>
+          name: <input value={newName} onChange={handleNameChange}/>
         </div>
         <div>
           <button type="submit">add</button>
