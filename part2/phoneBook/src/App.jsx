@@ -1,13 +1,23 @@
-import { useState } from 'react'
+import { useState,useEffect  } from 'react'
 import Filter from './components/Filter'
 import AddPersonForm from './components/AddPersonForm'
 import Show from './components/Show'
+import axios from 'axios'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [filter, setFilter] = useState('')
   const [newNumber, setnewNumber] = useState('')
+
+  useEffect(() => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  }, [])
 
   const addName = (event) => {
     event.preventDefault()
